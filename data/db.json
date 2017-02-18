@@ -1,0 +1,8 @@
+{
+	"terms": [
+		{ "id": 1, "name": "Full stack" }
+	],
+	"definitions": [
+		{ "id": 1, "content": "Able to wear a stack of responsibility hats", "termId": 1 }
+	]
+}
