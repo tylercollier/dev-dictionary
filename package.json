@@ -10,13 +10,15 @@
     "json-server": "^0.9.5",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "json-server": "json-server --watch data/db.json --port 4501"
-  }
+  },
+  "proxy": "http://localhost:4501"
 }
