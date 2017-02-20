@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
-import { Button, Col, ControlLabel, Form, FormControl, FormGroup, HelpBlock, Well } from 'react-bootstrap';
+import { Button, Col, ControlLabel, Form, FormControl, FormGroup, HelpBlock, Image, Well } from 'react-bootstrap';
+import Select from 'react-select';
+import jsonData from '../data/db';
+import 'react-select/dist/react-select.css';
+
+// TODO: Fetch list of users from server via API.
+const options = jsonData.users;
+
+const userComponent = props => {
+  const value = props.value ? props.value : props.option
+  return (
+    <div className="user-select-component" onClick={() => props.onSelect(value)}>
+      <Image className="nav-avatar" src={'/avatars/' + value.avatarUrl} />
+      {' '}
+      <strong>{value.name}</strong>
+    </div>
+  )
+};
 
 class AddDefinition extends Component {
   static propTypes = {
     hide: React.PropTypes.func.isRequired,
   };
 
+  state = {
+    who: null,
+  };
+
   createDefinition = () => {
     // POST the definition to the server.
   }
 
+  selectWho = user => this.setState({ who: user });
+
   render() {
     const { hide } = this.props;
+    const { who } = this.state;
 
     return (
       <Well className="add-term">
@@ -30,13 +54,15 @@ class AddDefinition extends Component {
               Who's definition?
             </Col>
             <Col sm={10}>
-              <FormControl componentClass="select" placeholder="select">
-                <option value="">select</option>
-                <option value="1">Alice</option>
-                <option value="2">Dilbert</option>
-                <option value="3">Wally</option>
-              </FormControl>
-              <HelpBlock>If you heard someone provide this definition, you can credit it to them</HelpBlock>
+              <Select
+                options={options}
+                optionComponent={userComponent}
+                ignoreCase
+                onChange={this.selectWho}
+                value={who}
+                valueComponent={userComponent}
+              />
+              <HelpBlock>If you heard someone provide this definition, you can credit it to them. Otherwise, choose yourself.</HelpBlock>
             </Col>
           </FormGroup>
 
