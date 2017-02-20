@@ -16,7 +16,7 @@ const terms = jsonData.terms.map(term => ({
 
 class Dictionary extends Component {
   state = {
-    showAddTerm: true
+    showAddTerm: false
   };
 
   toggleAdd = () => this.setState({ showAddTerm: !this.state.showAddTerm })

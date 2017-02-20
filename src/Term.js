@@ -10,7 +10,7 @@ class Term extends Component {
   };
 
   state = {
-    showAddDefinition: true
+    showAddDefinition: false
   };
 
   toggleAdd = () => this.setState({ showAddDefinition: !this.state.showAddDefinition })
