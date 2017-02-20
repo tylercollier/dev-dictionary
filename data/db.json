@@ -3,6 +3,11 @@
 		{ "id": 1, "name": "Full stack" }
 	],
 	"definitions": [
-		{ "id": 1, "content": "Able to wear a stack of responsibility hats", "termId": 1 }
+		{ "id": 1, "content": "Able to wear a stack of responsibility hats", "termId": 1, "userId": 1 }
+	],
+	"users": [
+		{ "id": 1, "name": "Alice",  "avatarUrl": "alice.png" },
+		{ "id": 2, "name": "Dilbert",  "avatarUrl": "dilbert.png" },
+		{ "id": 3, "name": "Wally",  "avatarUrl": "wally.png" }
 	]
 }
