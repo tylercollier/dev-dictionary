@@ -5,3 +5,25 @@
 .nav-avatar {
   max-height: 25px;
 }
+
+.term h3 a {
+  display: inline-block;
+  border-bottom: 1px dashed #000;
+  text-decoration: none;
+}
+
+.definition {
+  display: flex;
+  align-items: baseline;
+}
+
+.definition-index {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: x-large;
+}
+
+.definition-content {
+  display: inline-block;
+  margin-left: 20px;
+}
