@@ -11,9 +11,14 @@ class App extends Component {
     loggedInUser: React.PropTypes.object,
   };
 
-  state = {
-    loggedInUser: null,
-  };
+  constructor() {
+    super();
+    const loggedInUserJson = localStorage.getItem('loggedInUser');
+    const loggedInUser = loggedInUserJson ? JSON.parse(loggedInUserJson) : null;
+    this.state = {
+      loggedInUser,
+    };
+  }
 
   getChildContext() {
     return {
@@ -22,11 +27,13 @@ class App extends Component {
   }
 
   markUserLoggedIn = user => {
-    this.setState({ loggedInUser: user })
+    this.setState({ loggedInUser: user });
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
   };
 
   markUserLoggedOut = () => {
-    this.setState({ loggedInUser: null })
+    this.setState({ loggedInUser: null });
+    localStorage.setItem('loggedInUser', null);
   };
 
   render() {
