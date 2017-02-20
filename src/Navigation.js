@@ -26,6 +26,9 @@ class Navigation extends Component {
               {' '}
               <strong>{loggedInUser.name}</strong>
             </Navbar.Text>}
+            {loggedInUser && <Navbar.Text>
+              {'{3}'} definitions
+            </Navbar.Text>}
             {loggedInUser && <LinkContainer to="/logout"><NavItem eventKey={2}>Logout</NavItem></LinkContainer>}
             {!loggedInUser && <LinkContainer to="/login"><NavItem eventKey={2}>Login</NavItem></LinkContainer>}
           </Nav>
