@@ -4,7 +4,7 @@ import Layout from './Layout';
 import Logout from './Logout';
 import Login from './Login';
 import Welcome from './Welcome';
-import Terms from './Terms';
+import Dictionary from './Dictionary';
 import TermContainer from './TermContainer';
 import './App.css';
 
@@ -46,7 +46,7 @@ class App extends Component {
           <Route path="login" component={props => <Login { ...props} markUserLoggedIn={this.markUserLoggedIn} />} />
           <Route path="logout" component={props => <Logout { ...props} markUserLoggedOut={this.markUserLoggedOut} />} />
           <Route path="terms">
-            <IndexRoute component={Terms} />
+            <IndexRoute component={Dictionary} />
             <Route path=":termName" component={TermContainer} />
           </Route>
         </Route>
