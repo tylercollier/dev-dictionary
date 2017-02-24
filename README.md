@@ -1,5 +1,11 @@
 # Dev Dictionary
 
+## TL;DR
+
+If you are considering taking on this challenge, you'll be writing some code to fetch data and feeding it to pre-built components.
+
+## L;R
+
 This is an experimental project by [Phoenix ReactJS](https://www.meetup.com/Phoenix-ReactJS) (see [this event](https://www.meetup.com/Phoenix-ReactJS/events/237844776/)). The idea is to provide a simple app idea and shell, have multiple people implement it (wire it up to fetch data, etc), and share our different strategies for doing so.
 
 The actual app idea (Dev Dictionary) is a collection of developer terms and definitions from the community. It's by the (React) community and for the community. Thus it's intentional and good to have definitions geared a little more toward React developers than, say, desktop app programmers. Definitions should have more of a web perspective, compared to, say, a low level C++ programmer perspective.
@@ -49,6 +55,7 @@ Here are the pieces you need to wire up. "Wire up" here means fetch the data and
 1. Fetch user list. See `AddDefinition` component.
 1. Post new definitions. See `AddDefinition` component. In the data sent to the server, be sure to include the selected user from #3.
 1. Fetch count of definitions attributed to current user. See `Navigation` component.
+1. NOT PICTURED: Display the name of who contributed the term or the definition, as well as their user avatar (picture).
 
 There's one more screen:
 
@@ -58,13 +65,17 @@ There's one more screen:
 
 Be sure to push your changes to your public fork so you can share them with others!
 
-# Don't forget
+# Don't forget the real world
 
 This app is relatively straight-forward. However, you should consider the real-world issues. For example, what happens when a fetch or POST fails? You can't just ignore this possibility. What if the fetch takes a while? You should show the user some type of spinner. Consider how you will force errors or slow-loading during your presentation to show how you handle these scenarios.
 
 # Focus
 
-The point of the project is for us to have a well known app idea at the start, so it's easy to compare the changes we've each made. You can make changes wherever you like, for whatever reason (such as aesthetics, etc). Just don't stray too far or you won't have common ground to teach others. For example, don't fetch data with Relay/GraphQL, as that would make the project too different from what others are doing. You could make the site look prettier, perhaps more responsive, but take care not to clutter up the files too much. If someone else looks at your code, you want them to quickly find the "wiring" changes and not too much else.
+The point of the project is for us to have a well known app idea at the start, so it's easy to compare the changes we've each made. You can make changes wherever you like, for whatever reason (such as aesthetics, etc). Just don't stray too far or you won't have common ground to teach others. For example, don't worry about form validation. Don't fetch data with Relay/GraphQL, as that would make the project too different from what others are doing. You could make the site look prettier, perhaps more responsive, but take care not to clutter up the files too much. If someone else looks at your code, you want them to quickly find the "wiring" changes and not too much else.
+
+# Stretch Goals
+
+Implement edit and delete for terms and definitions.
 
 # Need more control?
 
