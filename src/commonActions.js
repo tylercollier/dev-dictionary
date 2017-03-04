@@ -53,4 +53,4 @@ class CommonActions {
   }
 }
 
-export default new CommonActions()
+export default new CommonActions();
