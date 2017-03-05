@@ -29,7 +29,7 @@ class Term extends Component {
           <Button bsStyle="info" bsSize="xsmall" onClick={this.toggleAdd}>
             <Glyphicon glyph="plus-sign" /> Add definition
           </Button>
-          {showAddDefinition && <AddDefinition hide={this.toggleAdd} />}
+          {showAddDefinition && <AddDefinition termId={term.id} hide={this.toggleAdd} />}
         </div>
       </div>
     );

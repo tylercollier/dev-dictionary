@@ -12,6 +12,7 @@ const middlewares = jsonServer.defaults();
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
+server.get('/users', (req, res, next) => setTimeout(next, 400));
 server.get('/terms', (req, res, next) => setTimeout(next, 400));
 
 server.post('/terms', (req, res, next) => {
@@ -24,6 +25,16 @@ server.post('/terms', (req, res, next) => {
     } else {
       next();
     }
+  }, 400);
+});
+
+server.post('/definitions', (req, res, next) => {
+  setTimeout(() => {
+    const definition = req.body;
+    if (definition.content === 'error') {
+      return res.status(400).send({ message: 'Your definition was literally "error". No bueno.' })
+    }
+    next();
   }, 400);
 });
 

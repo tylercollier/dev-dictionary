@@ -20,7 +20,7 @@ class AddTerm extends Component {
     return (
       <PostWrapper
         poster={event => {
-          const form = event.target.form
+          const form = event.target.form;
           const formData = serialize(form, { hash: true });
           return commonActions.fetchJson('/terms', { method: 'POST', body: { ...formData, userId: this.context.loggedInUser.id }})
             .then(() => form.reset());
@@ -48,7 +48,7 @@ class AddTerm extends Component {
                   <strong>Uh oh!</strong> Something went wrong: {error.message}
                 </Alert>}
                 {submitSucceeded && <Alert bsStyle="success">
-                  <strong>Success!</strong> New term was submitted.
+                  <strong>Success!</strong> New term was submitted. <Button bsStyle="link" onClick={hide}>Ok</Button>
                 </Alert>}
               </Col>
             </FormGroup>
