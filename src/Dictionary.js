@@ -7,7 +7,7 @@ import commonActions from './commonActions';
 
 class Dictionary extends Component {
   state = {
-    showAddTerm: true
+    showAddTerm: false
   };
 
   toggleAdd = () => this.setState({ showAddTerm: !this.state.showAddTerm });
