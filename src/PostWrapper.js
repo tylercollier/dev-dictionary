@@ -18,9 +18,9 @@ class PostWrapper extends Component {
     this.setState = this.setState.bind(this);
   }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     this._isMounted = false;
-  };
+  }
 
   // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
   setState(state) {
@@ -38,9 +38,11 @@ class PostWrapper extends Component {
       .then(() => this.setState({ submitting: false }));
   };
 
-  componentDidMount = () => this._isMounted = true;
+  componentDidMount() {
+    this._isMounted = true;
+  }
 
-  render = () => {
+  render() {
     const { data, error, submitting, submitSucceeded } = this.state;
     const { children } = this.props;
 

@@ -12,6 +12,8 @@ const middlewares = jsonServer.defaults();
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
+server.get('/terms', (req, res, next) => setTimeout(next, 400));
+
 server.post('/terms', (req, res, next) => {
   setTimeout(() => {
     const { name: term } = req.body;
