@@ -10,7 +10,7 @@ class CommonActions {
         return response.json().then(body => {
           const error = new Error(body.message || body);
           error.response = response;
-          return error;
+          throw error;
         });
       } else {
         const error = new Error(response.statusText)

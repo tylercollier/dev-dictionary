@@ -30,10 +30,10 @@ class PostWrapper extends Component {
   }
 
   post = (...args) => {
-    this.setState({ submitting: true });
+    this.setState({ submitting: true, error: null, submitSucceeded: false });
 
     this.props.poster(...args)
-      .then(response => this.setState({ data: response }))
+      .then(response => this.setState({ data: response, submitSucceeded: true }))
       .catch(error => this.setState({ error }))
       .then(() => this.setState({ submitting: false }));
   };

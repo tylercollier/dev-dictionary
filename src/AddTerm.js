@@ -10,16 +10,22 @@ class AddTerm extends Component {
     hide: React.PropTypes.func.isRequired,
   };
 
+  static contextTypes = {
+    loggedInUser: React.PropTypes.object,
+  }
+
   render() {
     const { hide } = this.props;
 
     return (
       <PostWrapper
         poster={event => {
-          const formData = serialize(event.target.form, { hash: true });
-          return commonActions.fetchJson('/terms', { method: 'POST', body: formData })
+          const form = event.target.form
+          const formData = serialize(form, { hash: true });
+          return commonActions.fetchJson('/terms', { method: 'POST', body: { ...formData, userId: this.context.loggedInUser.id }})
+            .then(() => form.reset());
         }}
-      >{({ submitting, error, post }) =>
+      >{({ submitting, error, post, submitSucceeded }) =>
         <Well className="add-term">
           <Form horizontal>
             <FormGroup controlId="formHorizontalEmail">
@@ -27,7 +33,7 @@ class AddTerm extends Component {
                 Term
               </Col>
               <Col sm={10}>
-                <FormControl name="term" />
+                <FormControl name="name" />
               </Col>
             </FormGroup>
 
@@ -37,10 +43,14 @@ class AddTerm extends Component {
                   <InnerGlyphicon spin={submitting} /> Submit the term
                 </Button>
                 <Button bsStyle="link" onClick={hide}>Cancel</Button>
+                <p></p>
+                {error && <Alert bsStyle="danger">
+                  <strong>Uh oh!</strong> Something went wrong: {error.message}
+                </Alert>}
+                {submitSucceeded && <Alert bsStyle="success">
+                  <strong>Success!</strong> New term was submitted.
+                </Alert>}
               </Col>
-              {error && <Alert bsStyle="error">
-                <strong>Uh oh!</strong> Something went wrong: {error}
-              </Alert>}
             </FormGroup>
           </Form>
         </Well>
