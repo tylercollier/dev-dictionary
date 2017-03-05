@@ -43,22 +43,22 @@ class Navigation extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              {loggedInUser && <Navbar.Text>
-                You are currently logged in as <Image className="nav-avatar" src={'/avatars/' + loggedInUser.avatarUrl} />
-                {' '}
-                <strong>{loggedInUser.name}</strong>
-              </Navbar.Text>}
-              {loggedInUser && <Navbar.Text>
-                <Badge>
-                  {isFetching && <InnerGlyphicon spin={true} />}
-                  {!!count && count.toString()}
-                </Badge>
-                {' '}
-                definitions
-              </Navbar.Text>}
               {loggedInUser && <LinkContainer to="/logout"><NavItem eventKey={2}>Logout</NavItem></LinkContainer>}
               {!loggedInUser && <LinkContainer to="/login"><NavItem eventKey={2}>Login</NavItem></LinkContainer>}
             </Nav>
+            {loggedInUser && <Navbar.Text pullRight>
+              <Badge>
+                {isFetching && <InnerGlyphicon spin={true} />}
+                {!!count && count.toString()}
+              </Badge>
+              {' '}
+              definitions
+            </Navbar.Text>}
+            {loggedInUser && <Navbar.Text pullRight>
+              You are currently logged in as <Image className="nav-avatar" src={'/avatars/' + loggedInUser.avatarUrl} />
+              {' '}
+              <strong>{loggedInUser.name}</strong>
+            </Navbar.Text>}
           </Navbar.Collapse>
         </Navbar>
       }</FetchWrapper>
