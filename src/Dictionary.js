@@ -30,13 +30,13 @@ class Dictionary extends Component {
               return { terms: deepTerms };
             })
         }
-      >{({ terms }) =>
+      >{({ terms, fetchWrapper: { refetch } }) =>
         <div>
           <h2>Terms</h2>
           <Button bsStyle="success" onClick={this.toggleAdd}>
             <Glyphicon glyph="plus-sign" /> Add term
           </Button>
-          {showAddTerm && <AddTerm hide={this.toggleAdd} />}
+          {showAddTerm && <AddTerm hide={this.toggleAdd} onCreate={refetch} />}
           <div className="terms">
             {terms.map(term => {
               return <Term key={term.id} term={term} />;
