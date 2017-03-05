@@ -69,6 +69,18 @@
 }
 
 .submitted-by {
-  margin-left: 20px;
   font-size: small;
+  color: silver;
+}
+
+.submitted-by img {
+  opacity: 0.5;
+}
+
+.term .submitted-by {
+  margin-left: 20px;
+}
+
+.definition-container .submitted-by {
+  margin-left: 60px;
 }

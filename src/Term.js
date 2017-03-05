@@ -23,7 +23,7 @@ class Term extends Component {
       <div className="term">
         <h3 className="term"><Link to={`/terms/${term.name}`}>{term.name}</Link></h3>
         <div className="submitted-by">
-          Submitted by <Image className="nav-avatar" src={'/avatars/' + term.user.avatarUrl} />
+          <Image className="nav-avatar" src={'/avatars/' + term.user.avatarUrl} />
           {' '}
           <strong>{term.user.name}</strong>
         </div>

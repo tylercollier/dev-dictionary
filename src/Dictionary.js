@@ -19,8 +19,16 @@ class Dictionary extends Component {
       <FetchWrapper
         name="terms and definitions"
         fetcher={() =>
-          commonActions.fetchJson('/terms?_embed=definitions&_expand=user&_sort=name')
-            .then(response => ({ terms: response }))
+          Promise.all([
+            commonActions.fetchJson('/terms?_expand=user&_sort=name'),
+            commonActions.fetchJson('/definitions?_expand=user'),
+          ])
+            .then(([terms, definitions]) => {
+              const deepTerms = terms.map(term => {
+                return Object.assign({}, { ...term, definitions: definitions.filter(d => d.termId === term.id)});
+              })
+              return { terms: deepTerms };
+            })
         }
       >{({ terms }) =>
         <div>
