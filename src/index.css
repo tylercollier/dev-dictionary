@@ -67,3 +67,8 @@
     transform: rotate(359deg);
   }
 }
+
+.submitted-by {
+  margin-left: 20px;
+  font-size: small;
+}

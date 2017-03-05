@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Glyphicon } from 'react-bootstrap';
+import { Button, Glyphicon, Image } from 'react-bootstrap';
 import Definition from './Definition';
 import AddDefinition from './AddDefinition';
 import { Link } from 'react-router';
@@ -21,7 +21,12 @@ class Term extends Component {
 
     return (
       <div className="term">
-        <h3><Link to={`/terms/${term.name}`}>{term.name}</Link></h3>
+        <h3 className="term"><Link to={`/terms/${term.name}`}>{term.name}</Link></h3>
+        <div className="submitted-by">
+          Submitted by <Image className="nav-avatar" src={'/avatars/' + term.user.avatarUrl} />
+          {' '}
+          <strong>{term.user.name}</strong>
+        </div>
         {term.definitions.map((definition, index) => {
           return <Definition key={definition.id} definition={definition} index={index + 1} />
         })}

@@ -13,6 +13,11 @@ class Definition extends Component {
       <div className="definition">
         <div className="definition-index">{index}.</div>
         <div className="definition-content">{definition.content}</div>
+        <div className="submitted-by">
+          Submitted by <Image className="nav-avatar" src={'/avatars/' + definition.user.avatarUrl} />
+          {' '}
+          <strong>{definition.user.name}</strong>
+        </div>
       </div>
     );
   }

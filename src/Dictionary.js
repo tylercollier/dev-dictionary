@@ -19,7 +19,7 @@ class Dictionary extends Component {
       <FetchWrapper
         name="terms and definitions"
         fetcher={() =>
-          commonActions.fetchJson('/terms?_embed=definitions&_embed=user')
+          commonActions.fetchJson('/terms?_embed=definitions&_expand=user&_sort=name')
             .then(response => ({ terms: response }))
         }
       >{({ terms }) =>
