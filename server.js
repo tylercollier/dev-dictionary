@@ -12,6 +12,7 @@ const middlewares = jsonServer.defaults();
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
+server.get('/definitions', (req, res, next) => setTimeout(next, 400));
 server.get('/users', (req, res, next) => setTimeout(next, 400));
 server.get('/terms', (req, res, next) => setTimeout(next, 400));
 

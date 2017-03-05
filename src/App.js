@@ -43,8 +43,8 @@ class App extends Component {
       <Router history={browserHistory}>
         <Route path="/" component={Layout}>
           <IndexRoute component={Welcome} />
-          <Route path="login" component={props => <Login { ...props} markUserLoggedIn={this.markUserLoggedIn} />} />
-          <Route path="logout" component={props => <Logout { ...props} markUserLoggedOut={this.markUserLoggedOut} />} />
+          <Route path="login" component={props => <Login {...props} markUserLoggedIn={this.markUserLoggedIn} />} />
+          <Route path="logout" component={props => <Logout {...props} markUserLoggedOut={this.markUserLoggedOut} />} />
           <Route path="terms">
             <IndexRoute component={Dictionary} />
             <Route path=":termName" component={TermContainer} />

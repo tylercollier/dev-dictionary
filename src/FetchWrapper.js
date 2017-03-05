@@ -7,7 +7,6 @@ class FetchWrapper extends Component {
     children: PropTypes.func,
     fetcher: PropTypes.func.isRequired,
     name: PropTypes.string,
-    renderer: PropTypes.func,
     updatedTime: PropTypes.object,
     solutionSuggestion: PropTypes.node,
   };
@@ -64,7 +63,7 @@ class FetchWrapper extends Component {
 
   render() {
     const { data, error, isFetching } = this.state;
-    const { name, renderer, solutionSuggestion } = this.props;
+    const { children, name, solutionSuggestion, alwaysRender } = this.props;
 
     if (error) {
       return (
@@ -73,13 +72,11 @@ class FetchWrapper extends Component {
           {solutionSuggestion || <p>{solutionSuggestion}</p>}
         </div>
       );
-    } else if (data || this.props.alwaysRender) {
-      const renderMethod = renderer || this.props.children;
-      let dataToRender = null;
+    } else if (data || alwaysRender) {
       if (data) {
-        dataToRender = Object.assign({}, data, { fetchWrapper: { refetch: this.doFetch, isFetching: this.state.isFetching } })
+        return children(Object.assign({}, data, { fetchWrapper: { refetch: this.doFetch, isFetching: this.state.isFetching } }));
       }
-      return renderMethod(dataToRender);
+      return children();
     } else if (isFetching) {
       return <LoadingSpinner message={`Loading ${name}...`} />;
     } else {
