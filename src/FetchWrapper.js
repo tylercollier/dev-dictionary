@@ -7,7 +7,7 @@ class FetchWrapper extends Component {
     children: PropTypes.func,
     fetcher: PropTypes.func.isRequired,
     name: PropTypes.string,
-    updatedTime: PropTypes.object,
+    updatedTime: PropTypes.number,
     solutionSuggestion: PropTypes.node,
   };
 

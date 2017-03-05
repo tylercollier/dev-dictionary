@@ -16,7 +16,7 @@ class Navigation extends Component {
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if (nextContext.loggedInUser != this.context.loggedInUser && nextContext.loggedInUser) {
+    if (nextContext.loggedInUser !== this.context.loggedInUser && nextContext.loggedInUser) {
       this.setState({ updatedTime: Date.now() });
     }
   }
