@@ -39,7 +39,7 @@ class Dictionary extends Component {
           {showAddTerm && <AddTerm hide={this.toggleAdd} onCreate={refetch} />}
           <div className="terms">
             {terms.map(term => {
-              return <Term key={term.id} term={term} />;
+              return <Term key={term.id} term={term} onUpdateTerm={refetch} />;
             })}
           </div>
         </div>

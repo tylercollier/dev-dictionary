@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 class Term extends Component {
   static propTypes = {
     term: React.PropTypes.object.isRequired,
+    onUpdateTerm: React.PropTypes.func.isRequired,
   };
 
   state = {
@@ -16,7 +17,7 @@ class Term extends Component {
   toggleAdd = () => this.setState({ showAddDefinition: !this.state.showAddDefinition });
 
   render() {
-    const { term } = this.props;
+    const { term, onUpdateTerm } = this.props;
     const { showAddDefinition } = this.state;
 
     return (
@@ -34,7 +35,7 @@ class Term extends Component {
           <Button bsStyle="info" bsSize="xsmall" onClick={this.toggleAdd}>
             <Glyphicon glyph="plus-sign" /> Add definition
           </Button>
-          {showAddDefinition && <AddDefinition termId={term.id} hide={this.toggleAdd} />}
+          {showAddDefinition && <AddDefinition termId={term.id} hide={this.toggleAdd} onCreate={onUpdateTerm} />}
         </div>
       </div>
     );
