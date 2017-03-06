@@ -49,7 +49,7 @@ class Navigation extends Component {
             {loggedInUser && <Navbar.Text pullRight>
               <Badge>
                 {isFetching && <InnerGlyphicon spin={true} />}
-                {!!count && count.toString()}
+                {count || '-'}
               </Badge>
               {' '}
               definitions
