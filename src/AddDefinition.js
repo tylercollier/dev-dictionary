@@ -22,7 +22,7 @@ const userComponent = props => {
 class AddDefinition extends Component {
   static propTypes = {
     hide: React.PropTypes.func.isRequired,
-    onCreate: React.PropTypes.func.isRequired,
+    onCreate: React.PropTypes.func,
     termId: React.PropTypes.number.isRequired,
   };
 
@@ -60,7 +60,7 @@ class AddDefinition extends Component {
               .then(() => {
                 form.reset();
                 this.setState({ who: null });
-                onCreate();
+                onCreate && onCreate();
               });
           }}
         >{({ submitting, error, post, submitSucceeded }) =>

@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 class Term extends Component {
   static propTypes = {
     term: React.PropTypes.object.isRequired,
-    onUpdateTerm: React.PropTypes.func.isRequired,
+    onUpdateTerm: React.PropTypes.func,
   };
 
   state = {
@@ -29,7 +29,7 @@ class Term extends Component {
           <strong>{term.user.name}</strong>
         </div>
         {term.definitions.map((definition, index) => {
-          return <Definition key={definition.id} definition={definition} index={index + 1} />
+          return <Definition key={definition.id} definition={definition} index={index + 1} />;
         })}
         <div className="add-definition-section">
           <Button bsStyle="info" bsSize="xsmall" onClick={this.toggleAdd}>

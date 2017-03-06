@@ -24,17 +24,22 @@ class TermContainer extends Component {
         <FetchWrapper
           name="term"
           fetcher={() =>
-            commonActions.fetchJson(`/terms?name=${termName}&_embed=definitions&_limit=1`)
+            commonActions.fetchJson(`/terms?name=${termName}&_expand=user&_limit=1`)
               .then(response => {
-                if (response.length) {
-                  return { term: response[0] };
+                if (!response.length) {
+                  throw new Error(`Term '${termName}' not found`);
                 }
-                throw new Error(`Term '${termName}' not found`);
+                const term = response[0];
+                return term;
               })
+              .then(term =>
+                commonActions.fetchJson(`/definitions?termId=${term.id}&_expand=user`)
+                  .then(definitions => ({ term: Object.assign({}, term, { definitions }) }))
+              )
           }
           solutionSuggestion={<p>Make sure you spelled the term correctly. Perhaps you have an old bookmark? You may visit the <Link to="/terms">terms page</Link> and navigate from there.</p>}
-        >{({ term }) =>
-          <Term term={term} />
+        >{({ term, fetchWrapper: { refetch } }) =>
+          <Term term={term} onUpdateTerm={refetch} />
         }</FetchWrapper>
       </div>
     );
