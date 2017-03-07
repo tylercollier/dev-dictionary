@@ -30,7 +30,7 @@ Expected time: 2-8 hours
 
     This spins up a simple API server, using [json-server](https://github.com/typicode/json-server). It serves the data from `data/db.json`. It runs on port 4501, but you can change that in `package.json`.
 
-1. Familiarize yourself with URLs for fetching data from json-server. Read their doc. It's simple. E.g. fetching terms would use `http://localhost:4501/terms`. To embed definitions, use `http://localhost:4501/terms?_expand=definitions`.
+1. Familiarize yourself with URLs for fetching data from json-server. Read their doc. It's simple. E.g. fetching terms would use `http://localhost:4501/terms`. To embed definitions, use `http://localhost:4501/terms?_embed=definitions`.
 1. Start the frontend dev server.
 
         $ PORT=4500 npm start
