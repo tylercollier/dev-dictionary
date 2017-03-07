@@ -55,7 +55,10 @@ Here are the pieces you need to wire up. "Wire up" here means fetch the data and
 1. Fetch user list. See `AddDefinition` component.
 1. Post new definitions. See `AddDefinition` component. In the data sent to the server, be sure to include the selected user from #3.
 1. Fetch count of definitions attributed to current user. See `Navigation` component.
-1. NOT PICTURED: Display the name of who contributed the term or the definition, as well as their user avatar (picture).
+
+Also, display the name of who contributed the term or the definition, as well as their user avatar (picture). See the following picture:
+
+![Showing avatars](https://s3.amazonaws.com/tylercollier.com/images/Selection_244.png)
 
 There's one more screen:
 
