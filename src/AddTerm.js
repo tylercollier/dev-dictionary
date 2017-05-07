@@ -8,22 +8,19 @@ import InnerGlyphicon from './InnerGlyphicon';
 class AddTerm extends Component {
   static propTypes = {
     hide: React.PropTypes.func.isRequired,
+    loggedInUser: React.PropTypes.object,
     onCreate: React.PropTypes.func.isRequired,
   };
 
-  static contextTypes = {
-    loggedInUser: React.PropTypes.object,
-  }
-
   render() {
-    const { hide, onCreate } = this.props;
+    const { hide, loggedInUser, onCreate } = this.props;
 
     return (
       <PostWrapper
         poster={event => {
           const form = event.target.form;
           const formData = serialize(form, { hash: true });
-          return commonActions.fetchJson('/terms', { method: 'POST', body: { ...formData, userId: this.context.loggedInUser.id }})
+          return commonActions.fetchJson('/terms', { method: 'POST', body: { ...formData, userId: loggedInUser.id }})
             .then(() => {
               form.reset();
               onCreate();

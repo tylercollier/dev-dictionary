@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Glyphicon, Image } from 'react-bootstrap';
 import Definition from './Definition';
 import AddDefinition from './AddDefinition';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Term extends Component {
   static propTypes = {

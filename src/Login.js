@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import commonActions from './commonActions';
 import { Button, Image } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import FetchWrapper from './FetchWrapper';
 
 class Login extends Component {
-  static contextTypes = {
-    loggedInUser: React.PropTypes.object,
-  };
-
   static propTypes = {
+    loggedInUser: React.PropTypes.object,
     markUserLoggedIn: React.PropTypes.func.isRequired,
   };
 
   render() {
-    const { loggedInUser } = this.context;
-    const { markUserLoggedIn } = this.props;
+    const { loggedInUser, markUserLoggedIn } = this.props;
 
     return (
       <div className="login-screen">

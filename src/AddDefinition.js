@@ -11,7 +11,7 @@ import serialize from 'form-serialize';
 const userComponent = props => {
   const value = props.value ? props.value : props.option
   return (
-    <div className="user-select-component" onClick={() => props.onSelect(value)}>
+    <div className="user-select-component" onClick={() => props.onSelect ? props.onSelect(value) : () => {}}>
       <Image className="nav-avatar" src={'/avatars/' + value.avatarUrl} />
       {' '}
       <strong>{value.name}</strong>

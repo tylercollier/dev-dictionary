@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from './Layout';
 import Logout from './Logout';
 import Login from './Login';
@@ -9,22 +9,12 @@ import TermContainer from './TermContainer';
 import './App.css';
 
 class App extends Component {
-  static childContextTypes = {
-    loggedInUser: React.PropTypes.object,
-  };
-
   constructor() {
     super();
     const loggedInUserJson = localStorage.getItem('loggedInUser');
     const loggedInUser = loggedInUserJson ? JSON.parse(loggedInUserJson) : null;
     this.state = {
       loggedInUser,
-    };
-  }
-
-  getChildContext() {
-    return {
-      loggedInUser: this.state.loggedInUser,
     };
   }
 
@@ -39,18 +29,26 @@ class App extends Component {
   };
 
   render() {
+    const { loggedInUser } = this.state;
+
     return (
-      <Router history={browserHistory}>
-        <Route path="/" component={Layout}>
-          <IndexRoute component={Welcome} />
-          <Route path="login" component={props => <Login {...props} markUserLoggedIn={this.markUserLoggedIn} />} />
-          <Route path="logout" component={props => <Logout {...props} markUserLoggedOut={this.markUserLoggedOut} />} />
-          <Route path="terms">
-            <IndexRoute component={Dictionary} />
-            <Route path=":termName" component={TermContainer} />
-          </Route>
-        </Route>
-      </Router>
+      <BrowserRouter>
+        <Layout loggedInUser={loggedInUser}>
+          <Switch>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/login">
+              <Login loggedInUser={loggedInUser} markUserLoggedIn={this.markUserLoggedIn} />
+            </Route>
+            <Route path="/logout">
+              <Logout markUserLoggedOut={this.markUserLoggedOut} />
+            </Route>
+            <Route path="/terms/:termName" component={TermContainer} />
+            <Route path="/terms">
+              <Dictionary loggedInUser={loggedInUser} />
+            </Route>
+          </Switch>
+        </Layout>
+      </BrowserRouter>
     );
   }
 }

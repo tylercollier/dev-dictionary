@@ -6,6 +6,10 @@ import FetchWrapper from './FetchWrapper';
 import commonActions from './commonActions';
 
 class Dictionary extends Component {
+  static propTypes = {
+    loggedInUser: React.PropTypes.object,
+  };
+
   state = {
     showAddTerm: false
   };
@@ -13,6 +17,7 @@ class Dictionary extends Component {
   toggleAdd = () => this.setState({ showAddTerm: !this.state.showAddTerm });
 
   render() {
+    const { loggedInUser } = this.props;
     const { showAddTerm } = this.state;
 
     return (
@@ -36,7 +41,7 @@ class Dictionary extends Component {
           <Button bsStyle="success" onClick={this.toggleAdd}>
             <Glyphicon glyph="plus-sign" /> Add term
           </Button>
-          {showAddTerm && <AddTerm hide={this.toggleAdd} onCreate={refetch} />}
+          {showAddTerm && <AddTerm hide={this.toggleAdd} onCreate={refetch} loggedInUser={loggedInUser} />}
           <div className="terms">
             {terms.map(term => {
               return <Term key={term.id} term={term} onUpdateTerm={refetch} />;

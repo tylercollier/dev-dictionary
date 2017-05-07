@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Glyphicon } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import FetchWrapper from './FetchWrapper';
 import commonActions from './commonActions';
 import Term from './Term';

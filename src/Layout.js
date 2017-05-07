@@ -3,10 +3,16 @@ import Navigation from './Navigation';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class Layout extends Component {
+  static propTypes = {
+    loggedInUser: React.PropTypes.object,
+  }
+
   render() {
+    const { loggedInUser } = this.props;
+
     return (
       <div>
-        <Navigation />
+        <Navigation loggedInUser={loggedInUser} />
         <Grid>
           <Row>
             <Col>
