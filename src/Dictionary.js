@@ -2,41 +2,53 @@ import React, { Component } from 'react';
 import { Button, Glyphicon } from 'react-bootstrap';
 import Term from './Term';
 import AddTerm from './AddTerm';
-import jsonData from '../data/db';
-import filter from 'lodash/filter'
-
-// Don't do this. You need to actually fetch the data from the server using
-// the API. This is a cheater way just to provide a visual example of what you
-// should see when you're done.
-const terms = jsonData.terms.map(term => ({
-  ...term,
-  definitions: filter(jsonData.definitions, { termId: term.id })
-}))
-
+import FetchWrapper from './FetchWrapper';
+import commonActions from './commonActions';
 
 class Dictionary extends Component {
+  static propTypes = {
+    loggedInUser: React.PropTypes.object,
+  };
+
   state = {
     showAddTerm: false
   };
 
-  toggleAdd = () => this.setState({ showAddTerm: !this.state.showAddTerm })
+  toggleAdd = () => this.setState({ showAddTerm: !this.state.showAddTerm });
 
   render() {
+    const { loggedInUser } = this.props;
     const { showAddTerm } = this.state;
 
     return (
-      <div>
-        <h2>Terms</h2>
-        <Button bsStyle="success" onClick={this.toggleAdd}>
-          <Glyphicon glyph="plus-sign" /> Add term
-        </Button>
-        {showAddTerm && <AddTerm hide={this.toggleAdd} />}
-        <div className="terms">
-          {terms.map(term => {
-            return <Term key={term.id} term={term} />;
-          })}
+      <FetchWrapper
+        name="terms and definitions"
+        fetcher={() =>
+          Promise.all([
+            commonActions.fetchJson('/terms?_expand=user&_sort=name'),
+            commonActions.fetchJson('/definitions?_expand=user'),
+          ])
+            .then(([terms, definitions]) => {
+              const deepTerms = terms.map(term => {
+                return Object.assign({}, { ...term, definitions: definitions.filter(d => d.termId === term.id)});
+              })
+              return { terms: deepTerms };
+            })
+        }
+      >{({ terms, fetchWrapper: { refetch } }) =>
+        <div>
+          <h2>Terms</h2>
+          <Button bsStyle="success" onClick={this.toggleAdd}>
+            <Glyphicon glyph="plus-sign" /> Add term
+          </Button>
+          {showAddTerm && <AddTerm hide={this.toggleAdd} onCreate={refetch} loggedInUser={loggedInUser} />}
+          <div className="terms">
+            {terms.map(term => {
+              return <Term key={term.id} term={term} onUpdateTerm={refetch} />;
+            })}
+          </div>
         </div>
-      </div>
+      }</FetchWrapper>
     );
   }
 }

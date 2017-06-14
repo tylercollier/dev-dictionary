@@ -41,3 +41,46 @@
   cursor: pointer;
   padding: 5px;
 }
+
+.glyphicon-spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+.submitted-by {
+  font-size: small;
+  color: silver;
+}
+
+.submitted-by img {
+  opacity: 0.5;
+}
+
+.term .submitted-by {
+  margin-left: 20px;
+}
+
+.definition-container .submitted-by {
+  margin-left: 60px;
+}
