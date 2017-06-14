@@ -3,6 +3,7 @@ import { Button, Glyphicon } from 'react-bootstrap';
 import Term from './Term';
 import AddTerm from './AddTerm';
 import FetchWrapper from './FetchWrapper';
+import InnerGlyphicon from './InnerGlyphicon';
 import commonActions from './commonActions';
 
 class Dictionary extends Component {
@@ -35,8 +36,9 @@ class Dictionary extends Component {
               return { terms: deepTerms };
             })
         }
-      >{({ terms, fetchWrapper: { refetch } }) =>
+      >{({ terms, fetchWrapper: { isFetching, refetch } }) =>
         <div>
+          <div className="pull-right"><Button bsStyle="success" onClick={refetch}><InnerGlyphicon spin={isFetching} /> Debug refresh</Button></div>
           <h2>Terms</h2>
           <Button bsStyle="success" onClick={this.toggleAdd}>
             <Glyphicon glyph="plus-sign" /> Add term
